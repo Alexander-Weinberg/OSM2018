@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
  
-void main()
+int main()
 {
     double niter = 10000000;
     double x,y;
@@ -26,3 +26,5 @@ void main()
     }
     pi = ((double)count/(double)niter)*4.0;          //p = 4(m/n)
     //printf("Pi: %f\n", pi);
+    return 0;
+}

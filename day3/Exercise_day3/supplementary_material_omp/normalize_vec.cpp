@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include <omp.h>
+#define _USE_MATH_DEFINES
 
 // function to compute the 2-norm of a vector v of length n
 double norm(double *v, int n){
@@ -37,12 +38,14 @@ void normalize_vector(double *v, int n){
 void normalize_vector_omp(double *v, int n)
 {
     double norm = 0.;
-
+    
+#pragma omp parallel    
     // compute the norm of v
-    for(int i=0; i<n; i++)
+    #pragma omp parallel for reduction(+:norm)
+    for(int i=0; i<n; i++){
         norm += v[i]*v[i];
+    }
     norm = sqrt(norm);
-
     // normalize v
     for(int i=0; i<n; i++)
         v[i] /= norm;
@@ -55,7 +58,7 @@ int main( void ){
 
     initialize(v, N);
     double time_serial = -omp_get_wtime();
-    normalize_vector(v, N);
+    normalize_vector_omp(v, N);
     time_serial += omp_get_wtime();
 
     // chck the answer

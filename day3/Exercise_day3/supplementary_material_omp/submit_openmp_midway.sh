@@ -4,10 +4,10 @@
 # another partition on Midway1
 
 # set the job name to hello-openmp
-#SBATCH --job-name=vec-openmp
+#SBATCH --job-name=Norm_vec
 
 # send output to hello-openmp.out
-#SBATCH --output=vec-openmp.out
+#SBATCH --output=norm-vec-openmp.out
 
 # this job requests node
 #SBATCH --ntasks=1
@@ -26,4 +26,4 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 # Run the process with mpirun. Notice -n is not required. mpirun will
 # automatically figure out how many processes to run from the slurm options
 ### openmp executable
-./5a.vec_add_sections.exec
+./norm.exec
