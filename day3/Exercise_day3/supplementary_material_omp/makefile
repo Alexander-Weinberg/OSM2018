@@ -11,8 +11,8 @@ dot.exec: dot_prod.cpp
 	g++ dot_prod.cpp -fopenmp -o dot.exec
 
 ## compile serial_pi
-pi.exec: serial_pi.cpp
-	g++ serial_pi.cpp -fopenmp -o pi.exec
+pi.exec: parallel_pi.cpp
+	g++ parallel_pi.cpp -fopenmp -o pi.exec
 
 ## compile serial_pi
 norm.exec: normalize_vec.cpp
