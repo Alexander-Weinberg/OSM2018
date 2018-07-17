@@ -10,7 +10,7 @@
 #SBATCH --output=norm-vec-openmp.out
 
 # this job requests node
-#SBATCH --ntasks=1
+#SBATCH --ntasks=2
 
 
 # and request 8 cpus per task for OpenMP threads

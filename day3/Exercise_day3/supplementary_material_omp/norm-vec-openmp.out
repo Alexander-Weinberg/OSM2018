@@ -1,6 +1,6 @@
-serial error   : 1.66533e-14
-parallel error : 1.67644e-14
+serial error   : 1.54987e-13
+parallel error : 1.66533e-14
 8 threads
-serial     : 0.299649 seconds	parallel   : 0.300227 seconds
-speedup    : 0.998074
-efficiency : 0.124759
+serial     : 0.389119 seconds	parallel   : 0.0547748 seconds
+speedup    : 7.10398
+efficiency : 0.887997

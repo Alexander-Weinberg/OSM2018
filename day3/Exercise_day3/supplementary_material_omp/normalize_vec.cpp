@@ -37,20 +37,23 @@ void normalize_vector(double *v, int n){
 
 void normalize_vector_omp(double *v, int n)
 {
-    double norm = 0.;
+     double norm = 0.;
     
-#pragma omp parallel    
-    // compute the norm of v
-    #pragma omp parallel for reduction(+:norm)
-    for(int i=0; i<n; i++){
-        norm += v[i]*v[i];
-    }
-    norm = sqrt(norm);
-    // normalize v
-    for(int i=0; i<n; i++)
-        v[i] /= norm;
+     // compute norm of v
+     #pragma omp parallel for reduction(+:norm)
+     for (int i=0; i<n; i++) {
+         norm += v[i]*v[i];
+     }
+     
+     norm = sqrt(norm);
+     // normalize v
+     #pragma omp parallel
+     {
+       #pragma omp for 
+       for(int i=0; i<n; i++)
+	   v[i] /= norm;
+     }
 }
-
 int main( void ){
     const int N = 40000000;
     double *v = (double*)malloc(N*sizeof(double));
@@ -58,7 +61,7 @@ int main( void ){
 
     initialize(v, N);
     double time_serial = -omp_get_wtime();
-    normalize_vector_omp(v, N);
+    normalize_vector(v, N);
     time_serial += omp_get_wtime();
 
     // chck the answer
