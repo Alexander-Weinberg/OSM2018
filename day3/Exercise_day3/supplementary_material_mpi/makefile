@@ -6,7 +6,7 @@ FFLAGS=-O3
 
 #######################################################################	
 
-all: broadcast.exec ar.exec 
+all: broadcast.exec ar.exec scatter.exec
 
 #######################################################################	
 
@@ -17,10 +17,10 @@ broadcast.exec: broadcast.cpp
 ## allreduce.cpp
 ar.exec: allreduce.cpp
 	$(CXX) $(FFLAGS) allreduce.cpp -o ar.exec
-## Example 1a
-#1a.hello_world_mpi_cpp.exec: 1a.hello_world_mpi.cpp
-#	$(CXX) $(FFLAGS) 1a.hello_world_mpi.cpp -o 1a.hello_world_mpi_cpp.exec
 	
+## scatter.cpp
+scatter.exec: scatter.cpp
+	$(CXX) $(FFLAGS) scatter.cpp -o scatter.exec
 	
 #######################################################################	
 

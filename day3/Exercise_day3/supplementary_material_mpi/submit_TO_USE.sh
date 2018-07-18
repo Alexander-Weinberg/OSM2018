@@ -4,9 +4,9 @@
 
 #SBATCH --time=00:02:00
 
-#SBATCH --output=mpi_broadcast.out
-#SBATCH --error=mpi_broadcast.err
+#SBATCH --output=mpi_scatter.out
+#SBATCH --error=mpi_scatter.err
 
 
 ### MPI executable
-mpiexec -np $SLURM_NTASKS ./ar.exec
+mpiexec -np $SLURM_NTASKS ./scatter.exec
