@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-#SBATCH --ntasks=16
+#SBATCH --ntasks=8
 
 #SBATCH --time=00:02:00
 
@@ -9,4 +9,4 @@
 
 
 ### MPI executable
-mpiexec -np $SLURM_NTASKS ./broadcast.exec
+mpiexec -np $SLURM_NTASKS ./ar.exec
