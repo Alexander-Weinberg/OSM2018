@@ -15,6 +15,8 @@
 # this job requests 1 core. Cores can be selected from various nodes.
 #SBATCH --ntasks=1
 
+#SBATCH --cpus-per-task=8
+
 #SBATCH --partition=sandyb
 
 # Run the process
