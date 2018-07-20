@@ -1,4 +1,4 @@
-CF   = -O3 -g -ffast-math
+CF   = -O2 -g -ffast-math -fopenmp
 CPP  = g++
 INCL =
 

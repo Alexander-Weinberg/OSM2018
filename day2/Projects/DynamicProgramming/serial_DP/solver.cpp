@@ -11,6 +11,7 @@
 #include "../eigen/Eigen/Dense"
 #include "param.hpp"
 #include "econ.hpp"
+#include <omp.h>
 
 using namespace Eigen;
 
@@ -49,17 +50,16 @@ MatrixXd ValIt(MatrixXd ValOld) {
      and choosing the one that yields the highest value. 
      These policies and new values will then be part of our new value and policy function guesses.
      */
-
-
+    int ik;
     for (int itheta=0; itheta<ntheta; itheta++) {
-        
         /*
          Given the theta state, we now determine the new values and optimal policies corresponding to each
          capital state.  
          */
-        
-        for (int ik=0; ik<nk; ik++) {
-            
+#pragma omp parallel private(ik, maxIndex, c, temp)
+{
+#pragma omp for
+        for (ik=0; ik<nk; ik++) {
             // Compute the consumption quantities implied by each policy choice
             c=f(kgrid(ik), thetagrid(itheta))-kgrid;
             
@@ -76,7 +76,7 @@ MatrixXd ValIt(MatrixXd ValOld) {
 
         }
     }
-    
+}
     // Concatenate ValNew and Policy into a single (2nk x ntheta) matrix.
     MatrixXd result(2*nk, ntheta);
     
